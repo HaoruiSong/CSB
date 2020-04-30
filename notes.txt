@@ -1,0 +1,14 @@
+1. 这里有的文件：
+data.py 处理数据的图片，跟mgn原来的会很像，但我改了一点，主要是增加了sketch和灰度图的数据处理
+network.py 里面ResnetConditionHR包含了CSB的结构，我注释掉了CSB以外的部分，现在它输出直接是CSB的输出（我画的那张图里combinator指出去的箭头）
+opt.py 记得要修改数据集的保存路径
+test.py main函数所在的文件
+utils里面的文件可以暂时不管
+
+2. 主要任务：把MGN连接到CSB的后面
+我只在test.py里面成功导入数据以及输入到CSB得到它的输出。现在需要把输出接到MGN里面
+1）MGN的结构（我觉得）应该要直接copy到network.py里面，然后在ResnetConditionHR的forward函数里面调用它（输入目前ResnetConditionHR的输出out_dec，输出MGN最终的哪个输出，作为ResnetConditionalHR的最终输出）。然后在test里面，四个输入图通过netM输出的就直接MGN最后的那个输出了
+2）完善test.py文件。目前只是非常简略的train，分epoch、loss函数、optimizer、lrschedule等等之类的都没有，测试也没有，具体需要参考MGN原来的写法
+3）跑一遍试试。。。。。
+4）实验结果直接补到PPT后面，PPT我准备开会用。当然我没做完的，前面理论部分我还会改
+5）没讲清楚的，记得问我（可以找个时间一起一边商量一边写）
